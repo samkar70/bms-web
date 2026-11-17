@@ -334,6 +334,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Keep Navbar Fixed on Scroll (Desktop & Mobile)
+  const navbar = document.getElementById("navbar");
+  const topbar = document.querySelector(".topbar");
+  function updateFixedNavbar() {
+    if (!navbar) return;
+    if (window.innerWidth <= 768) {
+      navbar.classList.add("is-fixed");
+      document.body.style.paddingTop = "";
+      return;
+    }
+    const threshold = topbar ? topbar.offsetHeight : 0;
+    if (window.scrollY >= threshold) {
+      navbar.classList.add("is-fixed");
+      document.body.style.paddingTop = `${navbar.offsetHeight}px`;
+    } else {
+      navbar.classList.remove("is-fixed");
+      document.body.style.paddingTop = "";
+    }
+  }
+  window.addEventListener("scroll", updateFixedNavbar, { passive: true });
+  window.addEventListener("resize", updateFixedNavbar);
+  updateFixedNavbar();
+
   // Mobile Menu Toggle
   const mobileMenuBtn = document.getElementById("mobileMenuBtn");
   const navLinks = document.getElementById("navLinks");

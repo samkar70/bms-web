@@ -1,0 +1,29 @@
+{
+  "name": "BMS Auto Glass — DFW Metroplex",
+  "short_name": "BMS Auto Glass",
+  "description": "Windshield replacement, rock chip repair, and auto glass service across the DFW Metroplex. In-Shop & Mobile.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#091221",
+  "theme_color": "#0f1c33",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

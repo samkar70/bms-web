@@ -27,14 +27,16 @@
   padding: 0;
 }
 
-html, body {
+html {
   width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
   scroll-behavior: smooth;
+  scroll-padding-top: 82px;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text-main);
   background-color: var(--bg-white);
@@ -123,10 +125,23 @@ a {
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
   background: #ffffff;
   border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.navbar.is-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
 }
 
 .navbar-inner {
@@ -1112,8 +1127,22 @@ a {
 }
 
 @media (max-width: 768px) {
+  html {
+    scroll-padding-top: 74px;
+  }
+
   body {
+    padding-top: 66px;
     padding-bottom: 74px;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
   }
 
   /* Hide topbar on iPhone so header looks clean like Yovany's Auto Glass */
