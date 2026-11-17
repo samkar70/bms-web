@@ -6,6 +6,7 @@ const BUSINESS_CONFIG = {
   businessName: "BMS Auto Glass",
   phoneDisplay: "(469) 855-8328",
   phoneRaw: "14698558328",
+  email: "samkar70@gmail.com",
   shopAddressEN: "11324 George Renfro Drive Suite I, Alvarado, TX 76009",
   shopAddressES: "11324 George Renfro Drive Suite I, Alvarado, TX 76009"
 };
@@ -359,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Quote Form Handler -> Prepares instant SMS to 469-855-8328
+  // Quote Form Handler -> Sends to samkar70@gmail.com AND opens instant SMS to 469-855-8328
   const quoteForm = document.getElementById("glassQuoteForm");
   if (quoteForm) {
     quoteForm.addEventListener("submit", (e) => {
@@ -375,6 +376,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const city = document.getElementById("customerCity").value.trim();
       const notes = document.getElementById("customerNotes").value.trim();
 
+      // 1. Send email notification in background to samkar70@gmail.com
+      fetch(`https://formsubmit.co/ajax/${BUSINESS_CONFIG.email}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          _subject: `New BMS Auto Glass Quote: ${year} ${make} ${model} (${name})`,
+          Name: name,
+          Phone: phone,
+          Vehicle: `${year} ${make} ${model}`,
+          Glass_Needed: glass,
+          Service_Preference: mode,
+          Location_DFW: city,
+          Notes: notes || "N/A"
+        })
+      }).catch(() => {});
+
+      // 2. Open direct SMS to (469) 855-8328 on the customer's phone
       const messageLines = [
         `Hello BMS Auto Glass! I would like a free quote:`,
         `• Vehicle: ${year} ${make} ${model}`,
