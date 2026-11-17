@@ -23,20 +23,16 @@ const translations = {
     nav_reviews: "Reviews",
     nav_faq: "FAQ",
     nav_contact: "Contact",
-    nav_quote: "Free Quote",
-    hero_badge: "DFW Metroplex's Trusted Auto Glass Specialists",
-    hero_title: "Professional Windshield Replacement & Auto Glass Repair in <span>DFW Metroplex</span>",
-    hero_subtitle: "Broken windshield, rock chip, or shattered door glass? Visit our shop or let our mobile technicians come directly to your home or workplace anywhere in Dallas–Fort Worth. Quality OEE glass backed by a Lifetime Warranty.",
+    nav_quote: "Get a Free Quote",
+    hero_badge: "IN-SHOP & MOBILE SERVICE • SERVING DFW METROPLEX",
+    hero_title: "Windshield Replacement & Auto Glass Repair in <span>DFW Metroplex</span>",
+    hero_subtitle: "Need help with damaged auto glass? Call BMS Auto Glass for windshield replacement, rock chip repair, and side or back window glass replacement. Visit our shop in Alvarado or schedule mobile service anywhere in Dallas–Fort Worth. Get a free quote in English or Spanish.",
     hero_call_btn: "Call (469) 855-8328",
-    hero_text_btn: "Text Us for Fast Quote",
-    trust_1_title: "Lifetime Warranty",
-    trust_1_desc: "Against leaks & workmanship defects",
-    trust_2_title: "In-Shop & Mobile Service",
-    trust_2_desc: "Come to our shop or we come to you",
-    trust_3_title: "Same-Day Service",
-    trust_3_desc: "Call ahead for fast scheduling",
-    trust_4_title: "Se Habla Español",
-    trust_4_desc: "Bilingual quotes & customer care",
+    hero_text_btn: "Text Us: (469) 855-8328",
+    trust_1_line: "Windshield, Side Door & Back Glass Replacement",
+    trust_2_line: "In-Shop (Alvarado) & Mobile Service Across DFW",
+    trust_3_line: "Lifetime Warranty Against Leaks & Defects",
+    trust_4_line: "English & Spanish • Se Habla Español",
     form_tag: "FAST & FREE ESTIMATE",
     form_title: "Get a Free Auto Glass Quote in DFW",
     form_subtitle: "Enter your vehicle details below for rapid pricing, or call us directly at <strong>(469) 855-8328</strong>.",
@@ -149,6 +145,7 @@ const translations = {
     footer_contact_title: "Quick Contact",
     footer_area: "📍 11324 George Renfro Dr Suite I, Alvarado, TX 76009",
     footer_rights: "All rights reserved. Serving Alvarado & the DFW Metroplex.",
+    sticky_call_btn: "Call Now: (469) 855-8328",
     sticky_quote_btn: "Get Free Quote"
   },
   es: {
@@ -163,19 +160,15 @@ const translations = {
     nav_faq: "Preguntas",
     nav_contact: "Contacto",
     nav_quote: "Cotizar Gratis",
-    hero_badge: "Especialistas de Confianza en Vidrios de Auto en DFW",
-    hero_title: "Cambio de Parabrisas y Reparación de Vidrios de Auto en <span>DFW Metroplex</span>",
-    hero_subtitle: "¿Parabrisas estrellado, golpe de piedra o vidrio de puerta roto? Visita nuestro taller o solicita nuestro servicio móvil a domicilio o trabajo en todo Dallas–Fort Worth. Vidrios de calidad OEE con Garantía de por Vida.",
+    hero_badge: "SERVICIO EN TALLER Y A DOMICILIO • DFW METROPLEX",
+    hero_title: "Cambio de Parabrisas y Reparación de Vidrios en <span>DFW Metroplex</span>",
+    hero_subtitle: "¿Necesitas ayuda con un vidrio dañado? Llama a BMS Auto Glass para cambio de parabrisas, reparación de golpes de piedra y vidrios laterales o traseros. Visita nuestro taller en Alvarado o agenda servicio móvil en todo Dallas–Fort Worth. Cotización gratis en Inglés o Español.",
     hero_call_btn: "Llamar al (469) 855-8328",
-    hero_text_btn: "Enviar Texto para Cotizar",
-    trust_1_title: "Garantía de por Vida",
-    trust_1_desc: "Contra filtraciones de agua y defectos",
-    trust_2_title: "Servicio en Taller y Móvil",
-    trust_2_desc: "Ven al taller o vamos hasta donde estés",
-    trust_3_title: "Servicio el Mismo Día",
-    trust_3_desc: "Llama temprano para agendar rápido",
-    trust_4_title: "Atención en Español",
-    trust_4_desc: "Cotizaciones claras y trato directo",
+    hero_text_btn: "Enviar Texto: (469) 855-8328",
+    trust_1_line: "Cambio de Parabrisas, Puertas Laterales y Medallón",
+    trust_2_line: "Servicio en Taller (Alvarado) y Móvil en Todo DFW",
+    trust_3_line: "Garantía de por Vida Contra Filtraciones",
+    trust_4_line: "Atención en Inglés y Español • Se Habla Español",
     form_tag: "COTIZACIÓN RÁPIDA Y GRATIS",
     form_title: "Obtén tu Cotización Gratis en DFW",
     form_subtitle: "Ingresa los datos de tu vehículo para recibir precio rápido, o llámanos directo al <strong>(469) 855-8328</strong>.",
@@ -288,6 +281,7 @@ const translations = {
     footer_contact_title: "Contacto Rápido",
     footer_area: "📍 11324 George Renfro Dr Suite I, Alvarado, TX 76009",
     footer_rights: "Todos los derechos reservados. Sirviendo a Alvarado y el Metroplex DFW.",
+    sticky_call_btn: "Llamar Ahora: (469) 855-8328",
     sticky_quote_btn: "Cotizar Gratis"
   }
 };
@@ -310,6 +304,11 @@ function setLanguage(lang) {
   if (langBtn) {
     langBtn.innerHTML = lang === "en" ? "🇪🇸 Español" : "🇺🇸 English";
   }
+
+  const langBtnMobile = document.getElementById("langToggleMobile");
+  if (langBtnMobile) {
+    langBtnMobile.innerHTML = lang === "en" ? "🇪🇸 ES" : "🇺🇸 EN";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -319,10 +318,17 @@ document.addEventListener("DOMContentLoaded", () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // Language switcher
+  // Language switcher (desktop & mobile)
   const langBtn = document.getElementById("langToggle");
   if (langBtn) {
     langBtn.addEventListener("click", () => {
+      setLanguage(currentLang === "en" ? "es" : "en");
+    });
+  }
+
+  const langBtnMobile = document.getElementById("langToggleMobile");
+  if (langBtnMobile) {
+    langBtnMobile.addEventListener("click", () => {
       setLanguage(currentLang === "en" ? "es" : "en");
     });
   }
