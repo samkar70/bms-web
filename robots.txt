@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://samkar70.github.io/bms-web/sitemap.xml
+Sitemap: https://www.autoglassbms.com/sitemap.xml
